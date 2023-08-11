@@ -1,3 +1,3 @@
-# cride Bank
+# cride
 
 Simple CRUD with Django
