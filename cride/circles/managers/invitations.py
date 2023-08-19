@@ -5,7 +5,7 @@ from django.db import models
 
 # Utilities
 import random
-from string import ascii_uppercase, digits
+from string import ascii_uppercase, digits, punctuation
 
 
 class InvitationManager(models.Manager):
