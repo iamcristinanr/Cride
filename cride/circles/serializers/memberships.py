@@ -17,7 +17,7 @@ class MembershipModelSerializer(serializers.ModelSerializer):
 
     user = UserModelSerializer(read_only=True)
     invited_by = serializers.StringRelatedField()
-    joined_at = serializers.DateTimeField(source='created', read_only=True)
+    joined_at = serializers.DateTimeField(source='create', read_only=True)
 
     class Meta:
         """Meta class."""

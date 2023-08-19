@@ -44,11 +44,11 @@ class MembershipViewSet(mixins.ListModelMixin,
 
     def get_permissions(self):
         """Assign permissions based on action."""
-        permissions = [IsAuthenticated, IsActiveCircleMember]
+        permissions = [IsAuthenticated]
         if self.action !='create':
             permissions.append(IsActiveCircleMember)
-        if self.action =='invitation':
-            permission.append(IsSelfMember)
+        if self.action =='invitations':
+            permissions.append(IsSelfMember)
         return [p() for p in permissions]
 
     def get_queryset(self):
@@ -118,7 +118,7 @@ class MembershipViewSet(mixins.ListModelMixin,
         serializer.is_valid(raise_exception=True)
         member = serializer.save()
 
-        data = self.get_serializer(member.data)
+        data = self.get_serializer(member).data
         return Response(data, status=status.HTTP_201_CREATED)
 
 
