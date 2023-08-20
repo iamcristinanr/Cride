@@ -11,6 +11,19 @@ from cride.rides.models import Ride
 from datetime import timedelta
 from django.utils import timezone
 
+class RideModelSerializer(serializers.ModelSerializer):
+    """Ride model serializer."""
+
+    class Meta:
+        """Meta class."""
+
+        model = Ride
+        fields = '__all__'
+        read_only_field = (
+            'offered_in'
+            'offered_by'
+            'rating'
+        )
 
 
 class CreateRideSerializer(serializers.ModelSerializer):
@@ -31,9 +44,9 @@ class CreateRideSerializer(serializers.ModelSerializer):
         min_date = timezone.now() + timedelta(minutes=10)
         if data < min_date:
             raise serializers.ValidationError(
-                'Departure time must be at least pass the next 20 minutes window'
-            )
-            return data
+                'Departure time must be at least pass the next 10 minutes window'
+            ) 
+        return data
 
     def validate(self, data):
         """Validate.
@@ -54,7 +67,6 @@ class CreateRideSerializer(serializers.ModelSerializer):
                 )
         except Membership.DoesNotExist:  
             raise serializers.ValidationError('User is not an active member of the circle.')
-        
         if data['arrival_date'] <= data['departure_date']:
             raise serializers.ValidationError('Departure date must happen after arrival date.')
         
