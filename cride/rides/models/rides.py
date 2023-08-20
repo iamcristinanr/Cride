@@ -7,6 +7,7 @@ from django.db import models
 from cride.utils.models import CRideModel
 
 
+
 class Ride(CRideModel):
     """Ride model."""
 
