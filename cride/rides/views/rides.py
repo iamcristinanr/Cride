@@ -52,6 +52,8 @@ class RideViewSet(mixins.CreateModelMixin,
         permissions = [IsAuthenticated, IsActiveCircleMember]
         if self.action in ['update', 'partial_update']:
             permissions.append(IsRideOwner)
+        if action == 'join':
+            permissions.append(IsNotRideOwner)
         return[p() for p in permissions]
 
 
