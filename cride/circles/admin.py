@@ -25,3 +25,15 @@ class CircleAdmin(admin.ModelAdmin):
         'verified',
         'is_limited'
     )
+
+    actions = ['make_verified', 'make_unverify']
+
+    def make_verified(self, request, queryset):
+        """Make circles verified."""
+        queryset.update(verified=true)
+        make_verified.short_desription = 'Make selected circles verified'
+
+    def make_unverified(self, request, queryset):
+        """Make circles unverified."""
+        queryset.update(verified=true)
+        make_unverified.short_desription = 'Make selected circles unverified'
