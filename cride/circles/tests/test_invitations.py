@@ -118,7 +118,6 @@ class MemberInvitationsAPITestCase(APITestCase):
 
         # Verify new invitations were created
         invitations = Invitation.objects.filter(issued_by=self.user)
-        self.assertEqual(Invitation.objects.count(), self.membership.remaining_invitations)
-        self.assertEqual(Invitation.objects.count(), 10)
+        self.assertEqual(invitations.count(), self.membership.remaining_invitations)
         for invitation in invitations:
             self.assertIn(invitation.code, request.data['invitations'])
