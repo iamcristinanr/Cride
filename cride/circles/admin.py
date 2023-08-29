@@ -51,8 +51,8 @@ class CircleAdmin(admin.ModelAdmin):
         """Return todays rides."""
         now = timezone.now()
         start = datetime(now.year, now.month, now.day, 0 , 0, 0)
-        end = star + timedelta(days=1)
-        rides = Rides.objects.filter(
+        end = start + timedelta(days=1)
+        rides = Ride.objects.filter(
             offered_in__in=queryset.values_list('id'),
             departure_date__gte=start,
             departure_date__lte=end  
